@@ -1,0 +1,7 @@
+@article{
+  hu2022mix,
+  title={Mix and Localize: Localizing Sound Sources in Mixtures},
+  author={Hu, Xixi and Chen, Ziyang and Owens, Andrew},
+  journal={Computer Vision and Pattern Recognition (CVPR)},
+  year={2022}
+}

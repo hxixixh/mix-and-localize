@@ -1,0 +1,185 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<html>
+<head>
+    <title>Mix and Localize</title>
+    <!-- <meta property="og:image" content=images/teaser.png"/> Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+    <meta property="og:title" content="Mix and Localize: Localizing Sound Sources in Mixtures" />
+    <meta property="og:description" content="X. Hu, Z. Chen, A. Owens." />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- webpage template-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- model-viewer css -->
+    <link rel="stylesheet" href="assets/css/demo-style.css">
+
+</head>
+
+<body>
+    <br>
+    <!-- <center> -->
+    <center>
+        <span style="font-size:38px">Mix and Localize: Localizing Sound Sources in Mixtures</span>
+    </center>
+    <br><br>
+    <table align=center width=60%>
+        <tr>
+            <td align=center width=33%>
+                <center>
+                    <span style="font-size:20px"><a href="https://hxixixh.github.io/">Xixi Hu*</a></span>
+                </center>
+            </td>
+            <td align=center width=33%>
+                <center>
+                    <span style="font-size:20px"><a href="https://ificl.github.io/">Ziyang Chen*</a></span>
+                </center>
+            </td>
+            <td align=center width=33%>
+                <center>
+                    <span style="font-size:20px"><a href="http://andrewowens.com/">Andrew Owens</a></span>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table align=center width=60%>
+        <tr>
+            <td align=center width=100%>
+                <center>
+                    <span style="font-size:20px">University of Michigan &nbsp; &nbsp; &nbsp; &nbsp; UT Austin</span>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table align=center width=60%>
+        <tr>
+            <td align=center width=100%>
+                <center>
+                    <span style="font-size:20px">CVPR 2022</span>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table align=center width=100%>
+        <tr>
+            <td align=center width=25%>
+                <center>
+                    <span style="font-size:20px"><a href="#">[Paper]</a></span>
+                </center>
+            </td>
+            <td align=center width=25%>
+                <center>
+                    <span style="font-size:20px"><a href="https://github.com/hxixixh/mix-and-localize">[Github]</a></span>
+                </center>
+            </td>
+            <td align=center width=25%>
+                <center>
+                    <span style="font-size:20px"><a href="#">[Video]</a></span>
+                </center>
+            </td>
+            <td align=center width=25%>
+                <center>
+                    <span style="font-size:20px"><a
+                            href="">[Slides]</a></span>
+                </center>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table align=center width=80%>
+        <tr>
+            <td width=100%>
+                <center>
+                    <!--  height="480" -->
+                    <video width="1000" autoplay loop muted>
+                        <source src="images/method.mp4" type="video/mp4" />
+                    </video>
+                    <br>
+                </center>
+            </td>
+        </tr>
+        <!-- <tr>
+        <td width=95%>
+                <span style="font-size:14px"><i> Audio-visual random walks. We learn representations for separating and localizing sounds. We generate a synthetic mixture by summing waveforms from multiple videos (we show k = 2 videos). Our model estimates embedding vectors from the audio mixture, representing each sound source, and learns an audio-visual similarity metric that associates image regions with the extracted sources. We solve a cycle-consistency problem in a graph. Edges connect each audio node to nodes that represent each image. A random walker is trained to walk from each audio node to an image node, then back to the audio. Our model learns to guide the random walker to the node it began its walk (i.e. to maximize its cycle
+                consistency) using transition probabilities derived from the similarity function.</i> 
+        </td>
+        </tr> -->
+    </table>
+    <br>
+    <hr>
+
+    <table align=center width=80%>
+        <center><h1>Abstract</h1></center>
+        <tr>
+            <td>
+                We present a method for simultaneously localizing multi- ple sound sources within a visual scene. This task requires a model to both group a sound mixture into individual sources, and to associate them with a visual signal. Our method jointly solves both tasks at once, using a formulation inspired by the contrastive random walk of Jabri et al. We create a graph in which images and separated sounds correspond to nodes, and train a random walker to transition between nodes from different modalities with high return probabil- ity. The transition probabilities for this walk are determined by an audio-visual similarity metric that is learned by our model. We show through experiments with musical instruments and human speech that our model can successfully localize multiple sounds, outperforming other self-supervised methods.
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <hr>
+
+    <table align=center width=100%>
+        <center>
+            <h1>Talk</h1>
+        </center>
+        <div>
+            <p align="center">
+            <iframe style="width: 70%; height: 60%; min-width:300px" src="https://www.youtube.com/embed/vpcTohC8OOg" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>
+        </div>
+    </table>
+    <br><br>
+    <hr>
+
+
+    <table align=center width=60%>
+        <center><h1>Paper and Supplementary Material</h1></center>
+        <tr>
+            <td><a href=""><img class="layered-paper-big" style="height:175px" src="./images/paper.png"/></a></td>
+            <td><span style="font-size:14pt">Xixi Hu*, Ziyang Chen*, Andrew Owens.<br>
+                <b>Mix and Localize: Localizing Sound Sources in Mixtures.</b><br>
+                CVPR 2022.<br>
+                <!-- (hosted on <a href="#">ArXiv</a>)<br> -->
+                <!-- (<a href="#">Arxiv</a>)<br> -->
+                (<a href="#">Paper</a>)<br>
+                <span style="font-size:4pt"><a href=""><br></a>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <table align=center width=60%>
+        <tr>
+            <td><span style="font-size:14pt"><center>
+                <a href="./docs/bibtex.txt">[Bibtex]</a>
+            </center></td>
+        </tr>
+    </table>
+
+    <hr>
+    <br>
+
+    <table align=center width=80%>
+        <tr>
+            <td width=80%>
+                <left>
+                    <center><h1>Acknowledgements</h1></center>
+                    This work was funded in part by DARPA Semafor and Cisco Systems. The views, opinions and/or
+                    findings expressed are those of the authors and should not be interpreted as representing the official views or policies
+                    of the Department of Defense or the U.S. Government. The webpage template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">Colorization</a> project. 
+                </left>
+            </td>
+        </tr>
+    </table>
+
+<br>
+</body>
+</html>
