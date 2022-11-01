@@ -45,7 +45,7 @@ This repository contains the official codebase for [Mix and Localize: Localizing
 
 ## Training on MUSIC dataset
 ```bash
-python train.py --setting="music_multi_nodes" --exp="exp_music" --batch_size=128 --lr=1e-4 --epoch=30 
+python train.py --setting="music_multi_nodes" --exp="exp_music" --batch_size=128 --epoch=30 
 ```
 
 You can also download the pretrained model for MUSIC dataset [here](https://drive.google.com/file/d/17lKKMPxCrrQA168d_NzNQdaiVh4waC2i/view?usp=sharing)
