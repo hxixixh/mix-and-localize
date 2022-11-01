@@ -43,5 +43,31 @@ This repository contains the official codebase for [Mix and Localize: Localizing
 
     ```
 
-## Training 
-python train.py
+## Training on MUSIC dataset
+python train.py --setting="music_multi_nodes" --exp="exp_music" --batch_size=128 --lr=1e-4 --epoch=30 
+
+You can also download the pretrained model for MUSIC dataset [here](https://drive.google.com/file/d/17lKKMPxCrrQA168d_NzNQdaiVh4waC2i/view?usp=sharing)
+
+## VoxCeleb Dataset
+1. Download the VoxCeleb2 dataset here: [VoxCeleb repo](https://github.com/clovaai/voxceleb_trainer)
+2. Postprocess the VoxCeleb2 dataset and extract the frames and audio clips. The structure of the dataset folder is as follow. 
+
+    ```
+    data
+      └── VoxCeleb 
+      │    ├──data-splits
+      │    ├──VoxCeleb2
+      │            └── [idxxxxx]
+      │                      └── [video_clip_name]  # 5s clip 
+      │                               ├── audio
+      │                               │      └── audio.wav
+      │                               └── frames
+      │                                      ├── frame000001.jpg              # fps = 10
+      │                                      ├── ...
+
+    ```
+
+## Training on VoxCeleb dataset
+python train.py --setting="voxceleb_multi_nodes" --exp="exp_voxceleb" --batch_size=128 --lr=1e-4 --epoch=30 
+
+You can also download the pretrained model for VoxCeleb2 dataset [here](https://drive.google.com/file/d/17lp67P4YuGv6ZXnCr8vTgoujIiA1xkXy/view?usp=sharing)

@@ -4,11 +4,13 @@ import pprint
 from tqdm import tqdm
 
 import torch
+import torch.nn as nn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
 from config import init_args, params
 from data.music_img_aud_pair import MusicImg2AudPairDataset
+from data.voxceleb_img_aud_pair import VoxCelebImg2AudPairDataset
 from models import MixAudModelFeatMultiAud, MixAudSIS1FeatHardCycleLoss
 
 DEVICE = torch.device("cuda")
@@ -58,8 +60,13 @@ def adjust_learning_rate(base_lr, lr_decay, lr_decay_multiplier, optimizer, epoc
 
 
 def get_dataloader(args, pr):
-    train_dataset = MusicImg2AudPairDataset(args, pr, pr.list_train, split='train')
-    val_dataset = MusicImg2AudPairDataset(args, pr, pr.list_val, split='val')
+    if args.setting == 'music_multi_nodes': 
+        train_dataset = MusicImg2AudPairDataset(args, pr, pr.list_train, split='train')
+        val_dataset = MusicImg2AudPairDataset(args, pr, pr.list_val, split='val')
+
+    elif args.setting == 'voxceleb_multi_nodes': 
+        train_dataset = VoxCelebImg2AudPairDataset(args, pr, pr.list_train, split='train')
+        val_dataset = VoxCelebImg2AudPairDataset(args, pr, pr.list_val, split='val')
 
     drop_last_val = False
     train_loader = DataLoader(
@@ -181,10 +188,11 @@ def main(args, device):
     tqdm.write('\n')
 
     for epoch in range(args.start_epoch, args.epochs):
-        cur_lr, lr_check = adjust_learning_rate(args.lr, args.lr_decay, 
-                                    args.lr_decay_multiplier,
-                                    optimizer, epoch)
-        print('Learning rate @ %5d is %f (expected %f)' % (epoch, lr_check, cur_lr))
+        if args.lr_scheduler: 
+            cur_lr, lr_check = adjust_learning_rate(args.lr, args.lr_decay, 
+                                        args.lr_decay_multiplier,
+                                        optimizer, epoch)
+            print('Learning rate @ %5d is %f (expected %f)' % (epoch, lr_check, cur_lr))
 
         net.train()
 
@@ -194,27 +202,28 @@ def main(args, device):
             audio_2_mix = audio_2.reshape(audio_2.shape[0] // args.mix_audio_nodes, args.mix_audio_nodes, -1).mean(1)
             audio = torch.cat([audio_1_mix, audio_2_mix], dim=0)
         
-        out = net(img, audio)
-        loss, diagnostics = criterion.compute_loss(out, max_mode=pr.max_mode)
+            out = net(img, audio)
 
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+            loss, diagnostics = criterion.compute_loss(out, max_mode=pr.max_mode)
 
-        current_step = epoch * len(train_loader) + step + 1
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
 
-        BOARD_STEP = 20
-        if (step+1) % BOARD_STEP == 0:
-            loss_tracker = {}
-            acc_tracker = {}
-            for i, key in enumerate(diagnostics.keys()):
-                if 'xent' in key: 
-                    loss_tracker[key] = diagnostics[key].mean().item()
-                elif 'acc' in key: 
-                    acc_tracker[key] = diagnostics[key].mean().item()
-                writer.add_scalars('/training loss', loss_tracker, current_step)
-                writer.add_scalars('/training acc', acc_tracker, current_step)
-                tqdm.write("Epoch: {}/{}, step: {}/{}, loss: {}, acc: {}".format(epoch+1, args.epochs, step+1, len(train_loader), loss_tracker, acc_tracker))
+            current_step = epoch * len(train_loader) + step + 1
+
+            BOARD_STEP = 20
+            if (step+1) % BOARD_STEP == 0:
+                loss_tracker = {}
+                acc_tracker = {}
+                for i, key in enumerate(diagnostics.keys()):
+                    if 'xent' in key: 
+                        loss_tracker[key] = diagnostics[key].mean().item()
+                    elif 'acc' in key: 
+                        acc_tracker[key] = diagnostics[key].mean().item()
+                    writer.add_scalars('/training loss', loss_tracker, current_step)
+                    writer.add_scalars('/training acc', acc_tracker, current_step)
+                    tqdm.write("Epoch: {}/{}, step: {}/{}, loss: {}, acc: {}".format(epoch+1, args.epochs, step+1, len(train_loader), loss_tracker, acc_tracker))
 
         # ----------- Validtion -------------- #
         VALID_STEP = args.valid_step

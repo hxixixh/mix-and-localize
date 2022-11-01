@@ -99,3 +99,29 @@ def music_multi_nodes(**kwargs):
     pr.list_test = 'data/MUSIC/data-splits/solo/test.csv'
     pr.data_base_path = 'data/MUSIC'
     return pr
+
+  
+def voxceleb_multi_nodes(**kwargs): 
+    pr = base('voxceleb-multi-nodes', **kwargs)
+    pr.fps = 10
+    pr.samp_sr = 16000
+    pr.log_spec = True
+    pr.total_dur = 5
+    pr.vid_dur = 0.96
+    pr.hop_length = 161
+    pr.n_mel = 64
+    pr.spec_max = 100.
+    pr.num_samples = int(round(pr.samp_sr * pr.vid_dur))
+    pr.mono = True
+    pr.dropout = 0.0
+    pr.img_tau = 0.07
+    pr.aud_tau = 0.07
+    pr.epsilon = 0.01
+    pr.psize = 64 # 48, 64
+    pr.patch_stride = 32
+    pr.img_size = 224
+    pr.frame_rate = 5
+    pr.list_train = 'data/VoxCeleb/data-split/train.csv'
+    pr.list_val = 'data/VoxCeleb/data-split/val.csv'
+    pr.list_test = 'data/VoxCeleb/data-split/test.csv'
+    return pr

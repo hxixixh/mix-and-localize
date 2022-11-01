@@ -23,7 +23,7 @@ def init_args():
     parser.add_argument('--max_sample', default=-1, type=int)
     parser.add_argument('--repeat', default=1, type=int)
     parser.add_argument('--num_workers', type=int, default=8)
-    parser.add_argument('--batch_size', default=24, type=int)
+    parser.add_argument('--batch_size', default=128, type=int)
     parser.add_argument('--audio_len', type=float, default=1, choices=[1, 3])
 
     # model config

@@ -202,3 +202,5 @@ lib/pycocotools/_mask.c
 .dumbo.json
 
 checkpoints
+data/MUSIC/MUSIC_raw
+data/VoxCeleb/VoxCeleb2
