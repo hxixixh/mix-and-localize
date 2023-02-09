@@ -75,3 +75,6 @@ python train.py --setting="voxceleb_multi_nodes" --exp="exp_voxceleb" --batch_si
 ```
 
 You can also download the pretrained model for VoxCeleb2 dataset [here](https://drive.google.com/file/d/17lp67P4YuGv6ZXnCr8vTgoujIiA1xkXy/view?usp=sharing)
+
+## VGGSound annotations
+We filtered and annotated segmentation masks for 446 high-quality video frames in VGGSound-Instruments. The annotations can be found at [here](https://drive.google.com/file/d/1BD-za_NTzOarHfwemDYA9ZJV2hBbZEtr/view?usp=sharing). 
