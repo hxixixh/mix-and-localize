@@ -48,7 +48,7 @@ This repository contains the official codebase for [Mix and Localize: Localizing
 python train.py --setting="music_multi_nodes" --exp="exp_music" --batch_size=128 --epoch=30 
 ```
 
-You can also download the pretrained model for MUSIC dataset [here](https://drive.google.com/file/d/17lKKMPxCrrQA168d_NzNQdaiVh4waC2i/view?usp=sharing)
+You can also download the pretrained model for MUSIC dataset [here](https://drive.google.com/drive/folders/14THPC601B2TC969oiri8NwUZo3PlXmG9?usp=sharing)
 
 ## VoxCeleb Dataset
 1. Download the VoxCeleb2 dataset here: [VoxCeleb repo](https://github.com/clovaai/voxceleb_trainer)
@@ -74,7 +74,7 @@ You can also download the pretrained model for MUSIC dataset [here](https://driv
 python train.py --setting="voxceleb_multi_nodes" --exp="exp_voxceleb" --batch_size=128 --lr=1e-4 --epoch=30 
 ```
 
-You can also download the pretrained model for VoxCeleb2 dataset [here](https://drive.google.com/file/d/17lp67P4YuGv6ZXnCr8vTgoujIiA1xkXy/view?usp=sharing)
+You can also download the pretrained model for VoxCeleb2 dataset [here](https://drive.google.com/drive/folders/14THPC601B2TC969oiri8NwUZo3PlXmG9?usp=sharing)
 
 ## VGGSound annotations
 We filtered and annotated segmentation masks for 446 high-quality video frames in VGGSound-Instruments. The annotations can be found at [here](https://web.eecs.umich.edu/~ahowens/mix-localize/). 
